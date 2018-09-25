@@ -1,0 +1,19 @@
+<div class="container" [class.example-is-mobile]="mobileQuery.matches" *ngIf="shouldRun">
+  <mat-toolbar>
+    <a href href="javascript:void(0)"><fa-icon (click)="snav.toggle()" [icon]="faBars"></fa-icon></a>
+    <h1 class="name">Baratón</h1>
+    <a [routerLink]="['/cart']"><fa-icon [icon]="faCartPlus"></fa-icon></a>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav 
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <app-filter-form></app-filter-form>
+    </mat-sidenav>
+   
+    <mat-sidenav-content>
+     <app-tree></app-tree>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

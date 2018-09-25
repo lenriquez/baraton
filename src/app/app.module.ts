@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { routing } from './routes';
@@ -15,7 +16,12 @@ import {
   MatSidenavModule,
   MatIconModule,
   MatNavList,
-  MatToolbarModule } from '@angular/material/';
+  MatInputModule,
+  MatToolbarModule,
+  MatFormFieldModule,
+  MatSlideToggleModule,
+  MatButtonModule,
+  MatCardModule } from '@angular/material/';
 
 @NgModule({
   declarations: [
@@ -25,16 +31,24 @@ import {
     HeaderComponent,
     MatNavList,
     FilterFormComponent,
-    TreeComponent
+    TreeComponent,
+
   ],
   imports: [
     BrowserModule,
     routing,
+    FormsModule,
+    ReactiveFormsModule,
     MatSidenavModule,
     MatIconModule,
     MatToolbarModule,
     BrowserAnimationsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatFormFieldModule,
+    MatSlideToggleModule,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,31 @@
+
+<div class="filter-form">
+  <mat-card class="employee-form">
+    <h3><fa-icon [icon]="faFilter"></fa-icon>  Filter:</h3>
+    <form [formGroup]="form">
+
+      <!-- Rango de Precios -->
+      <mat-form-field>
+        <input type="number" matInput placeholder="Min" formControlName="min">
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="number" matInput placeholder="Max" formControlName="max">
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+
+      <!-- Cantidad en stock -->
+      <mat-form-field>
+        <input matInput type="number" placeholder="Value" formControlName="stock">
+      </mat-form-field>
+
+      <!-- Disponibilidad -->
+      <mat-slide-toggle formControlName="status"> Disponibilidad </mat-slide-toggle>
+
+    </form>
+    <p class="button" >
+      <button mat-raised-button [disabled]="!form.valid" (click)="submit()">Filter</button>
+    </p>
+ </mat-card>
+</div>
