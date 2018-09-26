@@ -1,7 +1,12 @@
+import { LoadProducts } from './../../actions/products.action';
+import { Observable } from 'rxjs';
+import { Action } from '@ngrx/store';
 
 import { MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { faCartPlus, faBars } from '@fortawesome/free-solid-svg-icons';
+import { Store } from '@ngrx/store';
+import { select } from '@ngrx/store';
 
 /** @title Responsive sidenav */
 @Component({
@@ -9,30 +14,29 @@ import { faCartPlus, faBars } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './product-tree.component.html',
   styleUrls: ['./product-tree.component.scss'],
 })
-export class ProductTreeComponent implements OnDestroy {
+export class ProductTreeComponent implements OnDestroy, OnInit {
   mobileQuery: MediaQueryList;
   faCartPlus = faCartPlus;
   faBars = faBars;
-
-  fillerContent = Array.from({length: 50}, () =>
-      `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-       labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-       laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-       voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`);
+  products$: Observable<any>;
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
+    private store: Store<{products: any[]}>) {
+    this.products$ = this.store.pipe(select('products'));
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
+  ngOnInit() {
+    this.store.dispatch(new LoadProducts());
+  }
+
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
-
-  // tslint:disable-next-line:member-ordering
-  shouldRun = true;
 }

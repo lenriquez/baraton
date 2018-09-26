@@ -1,4 +1,4 @@
-<div class="container" [class.example-is-mobile]="mobileQuery.matches" *ngIf="shouldRun">
+<div class="container" [class.example-is-mobile]="mobileQuery.matches">
   <mat-toolbar>
     <a href href="javascript:void(0)"><fa-icon (click)="snav.toggle()" [icon]="faBars"></fa-icon></a>
     <h1 class="name">Baratón</h1>
@@ -13,7 +13,7 @@
     </mat-sidenav>
    
     <mat-sidenav-content>
-     <app-tree></app-tree>
+     <app-tree [treeData]="products$ | async"></app-tree>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

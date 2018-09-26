@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { routing } from './routes';
@@ -11,6 +14,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FilterFormComponent } from './products/components/filter-form/filter-form.component';
 import { TreeComponent } from './products/components/tree/tree.component';
+import { productReducer } from './products/reducers/products.reducer';
+import { ProductsEffects } from './products/effects/products.effects';
+
 
 import {
   MatSidenavModule,
@@ -21,6 +27,7 @@ import {
   MatFormFieldModule,
   MatSlideToggleModule,
   MatButtonModule,
+  MatTreeModule,
   MatCardModule } from '@angular/material/';
 
 @NgModule({
@@ -38,6 +45,7 @@ import {
     BrowserModule,
     routing,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     MatSidenavModule,
     MatIconModule,
@@ -48,7 +56,10 @@ import {
     MatSlideToggleModule,
     MatCardModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTreeModule,
+    StoreModule.forRoot({ products: productReducer  }),
+    EffectsModule.forRoot([ProductsEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]
