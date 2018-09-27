@@ -1,10 +1,18 @@
-.example-tree-invisible {
+
+.invisible {
   display: none;
 }
 
-.example-tree ul,
-.example-tree li {
+ul, li {
   margin-top: 0;
   margin-bottom: 0;
   list-style-type: none;
+}
+
+mat-tree {
+  margin-bottom: 100px;
+}
+
+mat-tree-node {
+  max-width: 300px;
 }

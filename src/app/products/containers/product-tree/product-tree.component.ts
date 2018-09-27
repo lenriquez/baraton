@@ -26,6 +26,7 @@ export class ProductTreeComponent implements OnDestroy, OnInit {
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
     private store: Store<{products: any[]}>) {
+
     this.products$ = this.store.pipe(select('products'));
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
